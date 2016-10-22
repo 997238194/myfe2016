@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>多级导航菜单</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        ul,ol{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+
+        #menu li{
+            width: 120px;
+            height: 30px;
+            margin-right: 5px;
+            background: #cccccc;
+            line-height: 30px;
+            text-align: center;
+            float: left;
+        }
+   #menu a{
+       width: 100%;
+       height: 100%;
+       /*background: black;*/
+       float: left;
+   }
+        #menu .submenu{
+            display:none;
+        }
+        #menu .submenu a{
+            background: #eeeeee;
+            border-bottom: 1px dashed #333;
+        }
+
+
+    </style>
+</head>
+<body>
+<ul id="menu">
+    <li class="mainmenu">
+        <a href="#">link 1</a>
+        <ul class="submenu">
+            <li><a href="#">sublink</a></li>
+            <li><a href="#">sublink</a></li>
+            <li><a href="#">sublink</a></li>
+        </ul>
+    </li>
+    <li class="mainmenu">
+        <a href="#">link 2</a>
+        <ul class="submenu">
+            <li><a href="#">sublink</a></li>
+            <li><a href="#">sublink</a></li>
+            <li><a href="#">sublink</a></li>
+        </ul>
+    </li>
+    <li class="mainmenu">
+        <a href="#">link 3</a>
+        <ul class="submenu">
+            <li><a href="#">sublink</a></li>
+            <li><a href="#">sublink</a></li>
+            <li><a href="#">sublink</a></li>
+        </ul>
+    </li>
+</ul>
+<script>
+//    number    string null undefined boolean
+//js是弱类型语言
+//通过id获取元素   alter弹出框
+//定义函数：
+//function add()
+    var oMenu=document.getElementById('menu');
+    var aLi=oMenu.getElementsByTagName('li');//nodelist
+    for(var i=0;i<aLi.length;i++){
+        if(aLi[i].className=='mainmenu') {
+            aLi[i].onmouseover = function () {
+                var oSubMenu = this.getElementsByTagName('ul')[0];//不支持ie早期版本
+                oSubMenu.style.display = "block";
+            };
+
+            aLi[i].onmouseout = function () {
+                var oSubMenu = this.getElementsByTagName('ul')[0];
+                oSubMenu.style.display = "none";
+            };
+        }
+    }
+
+</script>
+
+
+</body>
+</html>
