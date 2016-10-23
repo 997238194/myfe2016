@@ -4,71 +4,122 @@
     <meta charset="UTF-8">
     <title>折叠</title>
     <style>
-        *{
+        * {
             padding: 0;
             margin: 0;
         }
-        ul,ol{
+
+        ul, ol {
             list-style: none;
         }
-        a{
+
+        a {
             text-decoration: none;
         }
-        #menu h3{
+
+        #menu h3 {
             width: 120px;
             height: 30px;
-            background:black;
+            background: black;
             color: #eeeeee;
             line-height: 30px;
-            cursor:pointer;
+            cursor: pointer;
         }
-      #menu li{
-          width: 120px;
-      }
-      #menu .sub-menu{
-          border: 1px solid #000;
-          display: none;
-      }
+
+        #menu li {
+            width: 120px;
+            cursor: pointer;
+        }
+
+        #menu .sub-menu {
+            border: 1px solid #000;
+            display: none;
+        }
 
         /*cursor:pointer;*/
     </style>
 </head>
 <body>
 <ul id="menu">
-    <li>
+    <li class="sub-1menu">
         <h3>管理区</h3>
         <ul class="sub-menu">
-            <li><a href="#">001</a></li>
+            <li class="sub-1menu"><a href="#">001</a></li>
             <li><a href="#">002</a></li>
             <li><a href="#">003</a></li>
         </ul>
     </li>
-    <li>
+    <li class="sub-1menu">
         <h3>交流区</h3>
         <ul class="sub-menu">
-            <li><a href="#">001</a></li>
+            <li class="sub-1menu"><a href="#">001</a></li>
             <li><a href="#">002</a></li>
             <li><a href="#">003</a></li>
         </ul>
     </li>
 </ul>
+
 <script>
-    var oMenu=document.getElementById('menu');
-    var aH3=oMenu.getElementsByTagName('h3');
-    var aSubMenu=oMenu.getElementsByTagName('ul');
-    for(var i=0; i<aH3.length; i++) {
-         aH3[i].index=i;
-         aH3[i].bFlag=false;
-         aH3[i].onclick=function(){
-            if(this.bFlag){
-                aSubMenu[this.index].style.display="none";
-            }else{
-                aSubMenu[this.index].style.display="block";
-            }
-            this.bFlag=!this.bFlag;
-        };
+
+    var oMenu = document.getElementById('menu');
+    var aLi = oMenu.getElementsByTagName('li');
+    for (var i = 0; i < aLi.length; i++) {
+
+        if (aLi[i].className == 'sub-1menu') {
+            aLi[i].onclick = function () {
+                var oSubMenu = this.getElementsByTagName('ul')[0];
+                        if(oSubMenu.style.display == "block"){
+                            oSubMenu.style.display = "none";
+                        }else{
+                            oSubMenu.style.display = "block";
+                        }
+            };
+        }
     }
 
 </script>
+
+
+<!--// var oMenu=document.getElementById('menu');-->
+<!--// var aLi=oMenu.getElementsByTagName('li');-->
+<!--// var aSubMenu=oMenu.getElementsByTagName('ul');-->
+<!--// for(var i=0; i-->
+<!--//<  aLi.length-->
+<!--//; i++){-->
+<!--// if(aLi[i].className=='sub-1menu'){-->
+<!--// aLi[i].index=i;//这时的i已经变成4，与ul不对应。-->
+<!--// aLi[i].bFlag=false;-->
+<!--// aLi[i].onclick=function(){-->
+<!--// if(this.bFlag){-->
+<!--// aSubMenu[this.index].style.display="none";-->
+<!--// }else{-->
+<!--// console.log(-->
+<!--// this.index-->
+<!--// )-->
+<!--// aSubMenu[this.index].style.display="block";-->
+<!--// }-->
+<!--// this.bFlag=!this.bFlag;-->
+<!--// };-->
+<!--// }-->
+<!--// }-->
+
+<!--<script>-->
+<!--var oMenu=document.getElementById('menu');-->
+<!--var aH3=oMenu.getElementsByTagName('h3');-->
+<!--var aSubMenu=oMenu.getElementsByTagName('ul');-->
+<!--for(var i=0; i<aH3.length; i++) {-->
+<!--aH3[i].index=i;-->
+<!--aH3[i].bFlag=false;-->
+<!--aH3[i].onclick=function(){-->
+<!--if(this.bFlag){-->
+<!--aSubMenu[this.index].style.display="none";-->
+<!--}else{-->
+<!--aSubMenu[this.index].style.display="block";-->
+<!--}-->
+<!--this.bFlag=!this.bFlag;-->
+<!--};-->
+<!--}-->
+
+<!--</script>-->
 </body>
 </html>
