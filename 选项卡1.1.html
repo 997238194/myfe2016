@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>选项卡渐变</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        #container {
+            width: 400px;
+            height: 300px;
+            /*background: #cccccc;*/
+            margin: 50px auto;
+        }
+
+        #container li {
+            float: left;
+            width: 120px;
+            height: 30px;
+            background: #eeeeee;
+            /*color:#eeeeee;*/
+            margin-right: 5px;
+            line-height: 30px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        #container ul {
+            overflow: hidden;
+        }
+
+        #content {
+            height: 270px;
+            background: #eeeeee;
+            border-top: 1px solid #000000;
+            position: relative;
+        }
+
+        #container .selected {
+            background: #000000;
+            color: #eeeeee;
+        }
+
+        #content div {
+            background: #eeeeee;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        /*绝对定位相对已定位的父元素*/
+    </style>
+</head>
+<body>
+<div id="container">
+    <ul>
+        <li class="selected">111</li>
+        <li>222</li>
+        <li>333</li>
+    </ul>
+    <div id="content">
+        <div>001</div>
+        <div>002</div>
+        <div>003</div>
+    </div>
+</div>
+<script src="jslib.js"></script>
+<script>
+    var oContainer = document.getElementById('container');
+    var aLi = oContainer.getElementsByTagName('li');
+    var oContent = document.getElementById('content');
+    var aDiv = oContent.getElementsByTagName('div');
+    for (var i = 0; i < aDiv.length; i++) {
+        aDiv[i].style.zIndex = aDiv.length - i;
+    }
+    var zIndex = 3;
+    for (var i = 0; i < aLi.length; i++) {
+        aLi[i].index = i;
+        aLi[i].onclick = function () {
+            for (var i = 0; i < aLi.length; i++) {
+                aLi[i].className = '';
+            }
+            this.className = 'selected';
+            var oDiv = aDiv[this.index];
+            oDiv.style.opacity = 0;
+            oDiv.style.zIndex = ++zIndex;
+            animate(oDiv, {opacity: 100});
+        };
+    }
+</script>
+</body>
+</html>
