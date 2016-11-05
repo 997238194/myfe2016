@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>渐变</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        #container{
+            width: 700px;
+            height: 400px;
+            margin: 100px auto;
+            position: relative;
+        }
+        #container ul{
+            overflow: hidden;
+        }
+       #container li{
+            float: left;
+            width: 166px;
+            height: 20px;
+            background:pink;
+            color:red;
+           margin-right:5px;
+           line-height: 20px;
+           text-align: center;
+           cursor: pointer;
+       }
+        #content img{
+         position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <ul>
+        <li class="selected">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+
+    <div id="content">
+            <img src="img/1.jpg">
+            <img src="img/2.jpg">
+            <img src="img/3.jpg">
+            <img src="img/4.jpg">
+    </div>
+</div>
+<script src="../jslib.js"></script>
+<script>
+    var oContainer=document.getElementById('container');
+    var aLi=oContainer.getElementsByTagName('li');
+    var oContent=document.getElementById('content');
+    var aImg=oContent.getElementsByTagName('img');
+    for (var i = 0; i < aImg.length; i++) {
+        aImg[i].style.zIndex = aImg.length - i;
+    }
+    var zIndex = 4;
+    for (var i = 0; i < aLi.length; i++) {
+        aLi[i].index = i;
+        aLi[i].onclick = function () {
+            for (var i = 0; i < aLi.length; i++) {
+                aLi[i].className = '';
+            }
+            this.className = 'selected';
+            var oImg = aImg[this.index];
+           oImg.style.opacity = 0;
+            oImg.style.zIndex = ++zIndex;
+            animate(oImg, {opacity: 100});
+        };
+    }
+</script>
+</body>
+</html>
