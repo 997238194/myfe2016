@@ -117,6 +117,14 @@
     aLi[a].className='selected';
     aImg[a].className='selected';
 }
+    var timer;
+    timer=setInterval(function(){oNext.onclick();},1000);
+    oContainer.onmouseover=function(){
+        clearInterval(timer);
+    };
+    oContainer.onmouseout=function(){
+        timer=setInterval(function(){oNext.onclick();},1000);
+    }
 </script>
 </body>
 </html>
