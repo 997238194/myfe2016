@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>这是一个无缝的</title>
+    <style>
+    *{
+        padding: 0;
+        margin: 0;
+    }
+        ul{
+            list-style: none;
+        }
+        #container{
+            width: 390px;
+            height: 200px;
+            margin: 50px auto;
+            border: 1px dashed #000000;
+            /*overflow: hidden;*/
+            position: relative;
+        }
+        #content{
+            /*width: 600px;*/
+            /*height: 30px;*/
+            position: absolute;
+        }
+        #content li{
+            width: 120px;
+            height: 120px;
+            background: #000000;
+            color: #ffffff;
+            font-size: 30px;
+            line-height: 120px;
+            text-align: center;
+            float: left;
+            margin-right: 10px;
+        }
+        #arrow{
+            position: absolute;
+            bottom: 20px;
+            left:50%;
+            margin-left: -105px;
+        }
+        #arrow span{
+           width: 100px;
+            height: 40px;
+            background: #cccccc;
+            float: left;
+            /*display: inline-block;*/
+            color: #000000;
+            line-height: 40px;
+            text-align: center;
+            margin-right: 5px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="container">
+    <ul id="content">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <div id="arrow">
+        <span id="left">&lt;&lt;向左</span>
+        <span id="right">&gt;&gt;向右</span>
+    </div>
+</div>
+</body>
+<script>
+    oContainer=document.getElementById('container'),
+            oContent=document.getElementById('content'),
+            oContent.innerHTML +=oContent.innerHTML,
+            aLi=document.getElementsByTagName('li'),
+            oLeft=document.getElementById('left'),
+            oRight=document.getElementById('right');
+            speed=10;
+            oContent.style.width = 2 * oContent.offsetWidth + "px";
+    setInterval(function(){
+            oContent.style.width=oContent.offsetWidth - speed + "px";
+//        if(oContent.style.left <= -oContent.offsetWidth / 2)
+//        {
+//            oContent.style.left=0;
+//        }
+//        if(oContent.offsetLeft >0){
+//            oContent.style.left = -oContent.offsetWidth/2 +"px";
+//        }
+    },50);
+
+
+</script>
+</html>
