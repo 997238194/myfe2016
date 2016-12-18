@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        #container{
+            width: 800px;
+            height:300px;
+            margin: 100px auto;
+            position: relative;
+            overflow: hidden;
+        }
+        #container img{
+            width: 600px;
+            height: 300px;
+            /*position: absolute;*/
+        }
+        li{
+            position: absolute;
+            top: 0;
+            -webkit-transition: transform 2s ease;
+        }
+        span{
+            width: 600px;
+            height: 20px;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            color: #ffffff;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <ul>
+        <li><img src="1.jpg"><span>001</span></li>
+        <li><img src="2.jpg"><span>002</span></li>
+        <li><img src="3.jpg"><span>003</span></li>
+        <li><img src="4.jpg"><span>004</span></li>
+        <li><img src="5.jpg"><span>005</span></li>
+    </ul>
+</div>
+<script>
+var aLi=document.getElementsByTagName('li');
+    for(var i=0;i<aLi.length;i++){
+        aLi[i].style.left=i*160+"px";
+        aLi[i].index=i;
+        aLi[i].onmouseover = function(){
+            var now=this.index;
+            for(var i=0; i< aLi.length; i++){
+                if(i<=now){
+                    var x=50*i - 160*i;
+                    aLi[i].style.webkitTransform = "translateX("+x+"px)";
+                }else{
+                    var x=(800-(aLi.length-i)*50) - 160*i;
+                    aLi[i].style.webkitTransform="translateX("+x+"px)";
+                }
+            }
+        }
+        aLi[i].onmouseout = function(){
+            for(var i=0; i<aLi.length; i++){
+                aLi[i].style.webkitTransform='';
+            }
+        }
+    }
+
+</script>
+</body>
+</html>
