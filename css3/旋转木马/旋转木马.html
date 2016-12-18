@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        #stage{
+            width: 1000px;
+            height: 300px;
+            background: #cccccc;
+            margin:50px auto;
+            box-shadow: 0 0 3px 3px rgba(0,0,0,0.5);
+            overflow: hidden;
+            -webkit-perspective: 800px;
+            -webkit-perspective-origin:center -30% ;
+
+
+
+        }
+        #content{
+            width: 128px;
+            height:100px;
+            margin: 100px auto;
+            position: relative;
+            -webkit-transform-style:preserve-3d;
+            transition: transform 1s ease;
+
+        }
+        #content img{
+            width: 128px;
+            height: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            transition: transform 2s ease;
+        }
+    </style>
+</head>
+<body>
+<div id="stage">
+    <div id="content">
+
+    </div>
+</div>
+<script>
+    var oContent=document.getElementById('content');
+    var aImg=oContent.getElementsByTagName('img');
+    var x=64/Math.tan(20*(Math.PI/180))+50;
+    var idx= 0;
+    var html='';
+    for(var i=0;i<9; i++){
+        html+="<img src='img/"+(i+1)+".jpg'/>";
+    }
+    oContent.innerHTML=html;
+
+    oContent.onclick=function(){
+        idx++;
+        oContent.style.transform="rotateY("+idx*40+"deg)";
+    };
+
+    var index = 9;
+    var timer=setInterval(function(){
+
+        index--;
+        if(index<0){
+            clearInterval(timer);
+        }else{
+//            console.log(index);
+            aImg[index].style.webkitTransform="rotateY("+index*40+"deg) translateZ("+x+"px)"
+        }
+
+    },100)
+
+
+
+
+
+</script>
+</body>
+</html>
